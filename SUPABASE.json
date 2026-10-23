@@ -1,8 +1,8 @@
 {
   "project": {
-    "url": "https://YOUR-PROJECT-REF.supabase.co",
-    "publishableKey": "YOUR-PUBLISHABLE-ANON-KEY",
-    "projectRef": "YOUR-PROJECT-REF"
+    "url": "https://wyneqlywupcwqqoyvlzt.supabase.co",
+    "publishableKey": "sb_publishable_xb7FCXYVI6ikJfLY9Z0TKA_AOqb7qmf",
+    "projectRef": "wyneqlywupcwqqoyvlzt"
   },
   "frontend": {
     "configFile": "assets/js/config.js",
@@ -23,16 +23,12 @@
   "auth": {
     "providers": ["email"],
     "emailConfirmationRecommended": true,
-    "redirectUrls": [
-      "http://localhost:8080/",
-      "https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY/"
-    ],
     "inviteLinkFormat": "{siteUrl}#invite={token}"
   },
   "deployment": {
     "hosting": "github-pages",
     "workflow": ".github/workflows/deploy-pages.yml",
-    "siteUrl": "https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY/"
+    "siteUrl": "https://mcv-s.github.io/cloudcollaboration/"
   },
   "security": {
     "neverCommit": [
