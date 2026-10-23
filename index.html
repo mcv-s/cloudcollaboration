@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cloud Collab — secure collaborative workspaces for teams.">
+  <title>Cloud Collab</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <script type="importmap">
+    {"imports":{"@supabase/supabase-js":"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm","marked":"https://cdn.jsdelivr.net/npm/marked@15/+esm","dompurify":"https://cdn.jsdelivr.net/npm/dompurify@3/+esm"}}
+  </script>
+</head>
+<body>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <main id="app" class="app-root" aria-busy="true">
+    <section id="loading-screen" class="center-screen"><div class="spinner"></div><p>Loading Cloud Collab…</p></section>
+    <section id="auth-screen" class="auth-screen hidden">
+      <div class="auth-card">
+        <div class="brand"><span class="brand-mark">✦</span><span>Cloud Collab</span></div>
+        <p class="eyebrow">A focused home for team knowledge</p>
+        <h1 id="auth-title">Sign in</h1>
+        <p id="auth-description" class="muted">Use your account to access your workspaces.</p>
+        <form id="auth-form" class="stack">
+          <label id="display-name-field" class="hidden">Display name<input name="displayName" autocomplete="name"></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" minlength="8" required></label>
+          <button class="button primary" type="submit" id="auth-submit">Sign in</button>
+        </form>
+        <div class="auth-links"><button class="link-button" id="auth-toggle">Create an account</button><button class="link-button" id="reset-password">Forgot password?</button></div>
+      </div>
+    </section>
+    <section id="workspace-screen" class="workspace-screen hidden">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top"><div class="brand"><span class="brand-mark">✦</span><span>Cloud Collab</span></div><button class="icon-button mobile-only" id="close-sidebar" aria-label="Close navigation">×</button></div>
+        <div class="workspace-switcher"><span class="eyebrow">Workspace</span><select id="workspace-select" aria-label="Current workspace"></select><button class="button subtle full" id="new-workspace">＋ New workspace</button></div>
+        <nav class="sidebar-actions" aria-label="Workspace navigation"><button class="nav-button" id="search-button">⌕ <span>Search</span><kbd>Ctrl K</kbd></button><button class="nav-button" id="settings-button">⚙ <span>Settings</span></button></nav>
+        <div class="page-tree-header"><span class="eyebrow">Pages</span><button class="icon-button" id="new-page" aria-label="Create page">＋</button></div>
+        <div id="page-tree" class="page-tree"></div>
+        <div class="sidebar-bottom"><button class="profile-button" id="profile-button"><span class="avatar" id="profile-avatar">?</span><span id="profile-name">Account</span><span class="muted">⋯</span></button></div>
+      </aside>
+      <div class="sidebar-backdrop hidden" id="sidebar-backdrop"></div>
+      <section class="main-panel"><header class="topbar"><button class="icon-button mobile-only" id="open-sidebar" aria-label="Open navigation">☰</button><div id="breadcrumbs" class="breadcrumbs">Workspace</div><div class="topbar-actions"><span id="save-status" class="save-status"></span><button class="button subtle" id="sign-out">Sign out</button></div></header><main id="content" class="content"><div class="empty-state"><div class="empty-icon">✦</div><h1>Choose a page</h1><p>Select a page from the sidebar or create a new one to get started.</p><button class="button primary" id="empty-new-page">Create your first page</button></div></main></section>
+    </section>
+  </main>
+  <dialog id="workspace-dialog"><form method="dialog" id="workspace-form" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="Close">×</button><h2>New workspace</h2><p class="muted">Create a private space for your team.</p><label>Name<input name="name" required maxlength="80" autofocus></label><label>Description<textarea name="description" rows="3" maxlength="240"></textarea></label><div class="dialog-actions"><button class="button subtle" value="cancel">Cancel</button><button class="button primary" value="default">Create workspace</button></div></form></dialog>
+  <dialog id="invite-dialog"><form method="dialog" id="invite-form" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="Close">×</button><h2>Invite a teammate</h2><p class="muted">Generate a secure invitation link to share with them.</p><label>Email<input name="email" type="email" required></label><label>Role<select name="role"><option value="viewer">Viewer</option><option value="editor">Editor</option><option value="admin">Admin</option></select></label><div id="invite-result" class="invite-result hidden"></div><div class="dialog-actions"><button class="button subtle" value="cancel">Close</button><button class="button primary" value="default">Create invite</button></div></form></dialog>
+  <dialog id="search-dialog"><form method="dialog" class="dialog-card search-dialog-card"><button class="dialog-close" value="cancel" aria-label="Close">×</button><h2>Search pages</h2><input id="search-input" placeholder="Search titles and content…" autocomplete="off"><div id="search-results" class="search-results"></div></form></dialog>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

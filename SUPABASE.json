@@ -1,0 +1,50 @@
+{
+  "project": {
+    "url": "https://YOUR-PROJECT-REF.supabase.co",
+    "publishableKey": "YOUR-PUBLISHABLE-ANON-KEY",
+    "projectRef": "YOUR-PROJECT-REF"
+  },
+  "frontend": {
+    "configFile": "assets/js/config.js",
+    "publicConfigAllowed": true,
+    "serviceRoleKeyAllowed": false
+  },
+  "database": {
+    "migration": "supabase/migrations/202610230001_initial.sql",
+    "tables": [
+      "profiles",
+      "workspaces",
+      "workspace_members",
+      "pages",
+      "workspace_invitations"
+    ],
+    "rlsRequired": true
+  },
+  "auth": {
+    "providers": ["email"],
+    "emailConfirmationRecommended": true,
+    "redirectUrls": [
+      "http://localhost:8080/",
+      "https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY/"
+    ],
+    "inviteLinkFormat": "{siteUrl}#invite={token}"
+  },
+  "deployment": {
+    "hosting": "github-pages",
+    "workflow": ".github/workflows/deploy-pages.yml",
+    "siteUrl": "https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY/"
+  },
+  "security": {
+    "neverCommit": [
+      "service_role key",
+      "database password",
+      "JWT secret",
+      "SMTP password",
+      "private API credentials"
+    ],
+    "browserSafeValues": [
+      "Supabase project URL",
+      "Supabase publishable/anon key"
+    ]
+  }
+}
